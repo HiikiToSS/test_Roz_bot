@@ -4,23 +4,25 @@ from flask import Flask, request
 from telebot import types
 import telebot
 
-TOKEN = '5262735741:AAHL1PTf8GnPWXCFlgNp1Dngrei-RynBzB4'
+TOKEN = '5575632184:AAF4Wg5tNyb1eivb3WvTKZSZm6-XMKgs16c'
 
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
+bot.send_message(1895572923, 'работаю')
+
 @bot.message_handler(content_types=['text'])
 def commands(message):
-    if message.text == '/start':
-        bot.send_message(message.chat.id, 'Привет, я хотя уже и не тестовый бот но всё ещё нахожусь в разработке так что если будут какие-то баги то их наверное скоро исправит мой разраб, но лучше напиши (@HiikiToSS)\n Введи \" /commands\" чтобы увидеть список доступных команд')
-        print(1)
-    elif message.text == '/commands':
-        bot.send_message(message.from_user.id, '/ready /stat')
-    elif message.text == '/random_num':
-      rand_num = random.choice(1, 50)
-      bot.send_messsage(message.chat.id, rand_num)
-    else:
-        bot.send_message(message.from_user.id, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
+  if message.text == '/start':
+    bot.send_message(message.chat.id, 'Введи /commands и /rand_num')
+    print(1)
+  elif message.text == '/commands':
+    bot.send_message(message.from_user.id, '/ready /stat')
+  elif message.text == '/random_num':
+    rand_num = random.choice(1, 50)
+    bot.send_messsage(message.chat.id, rand_num)
+  else:
+    bot.send_message(message.from_user.id, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
   
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
