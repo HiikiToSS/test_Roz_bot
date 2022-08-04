@@ -18,7 +18,7 @@ def commands(message):
     print(1)
   elif message.text == '/commands':
     bot.send_message(message.from_user.id, '/ready /stat')
-  elif message.text == '/random_num':
+  elif message.text == '/rand_num':
     rand_num = random.choice(1, 50)
     bot.send_messsage(message.chat.id, rand_num)
   else:
