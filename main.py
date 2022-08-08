@@ -29,7 +29,8 @@ def commands(message):
     user = {
       id : message.from_user.id
     }
-    user = [user]
+    collection.insert_one(user)
+    bot.send_message(message.chat.id, 'отправил в бд, чекай')
   else:
     bot.send_message(message.from_user.id, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
 
