@@ -27,7 +27,7 @@ def commands(message):
     bot.send_message(message.from_user.id, '/ready /stat')
   elif message.text == '/ready':
     user = {
-      id : message.from_user.id
+      'id' : message.from_user.id
     }
     collection.insert_one(user)
     bot.send_message(message.chat.id, 'отправил в бд, чекай')
