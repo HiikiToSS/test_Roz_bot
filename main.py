@@ -6,14 +6,13 @@ import pymongo
 from flask import Flask, request
 from pymongo import MongoClient
 
-TOKEN = '5516529658:AAESAyHmYnapWVJdxxaSyMYYkx9a56hjbeI'
+server = Flask(__name__)
+TOKEN = '5424485104:AAGgOwaEL488DTeH6y3RLwxMEj70ziv6C5U'
 CONNECTION_STRING = "mongodb+srv://hikki_bd:Ares_0377@cluster0.yv7ke.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 client = MongoClient(CONNECTION_STRING)
 db = client['db_for_roz'] # first_DB - название базы данных
 collection = db['userDB'] # создаём коллекцию
 bot = telebot.TeleBot(TOKEN)
-server = Flask(__name__)
-
 
 bot.send_message(1895572923, 'работаю')
 
@@ -34,10 +33,9 @@ def commands(message):
             collection.insert_one(user)
         else:
             bot.send_message(chat, 'Ты уже участник')
-            print(list(collection.find()))
     elif message.text == '/stat':
       all = list(collection.find())
-      bot.send_message(chat, 'Кол-во участников: ' + str(len(all)) + ' и твой шанс на победу: ' + str(round(100/len(all), 2)) + '%')
+      bot.send_message(chat, 'Кол-во участников: ' + str(len(all)) + '\nТвой шанс на победу: ' + str(round(100/len(all), 2)) + '%')
     else:
         bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
   
