@@ -37,7 +37,7 @@ def commands(message):
             print(list(collection.find()))
     elif message.text == '/stat':
       all = list(collection.find())
-      bot.send_message(chat, 100/len(all))
+      bot.send_message(chat, round(100/len(all), 3))
     else:
         bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
   
