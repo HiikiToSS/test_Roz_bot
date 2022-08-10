@@ -37,7 +37,7 @@ def commands(message):
             print(list(collection.find()))
     elif message.text == '/stat':
       all = list(collection.find())
-      bot.send_message(chat, 'Твой шанс на победу - ' + str(round(100/len(all), 2)))
+      bot.send_message(chat, 'Кол-во участников: ' + str(len(all)) + ' и твой шанс на победу: ' + str(round(100/len(all), 2)) + '%')
     else:
         bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
   
@@ -50,7 +50,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://Rozbot.hikkicode.repl.co/' + TOKEN)
+    bot.set_webhook(url='https://dashboard.heroku.com/apps/test-sth01/' + TOKEN)
     return "!", 200
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
