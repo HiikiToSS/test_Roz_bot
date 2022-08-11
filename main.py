@@ -10,7 +10,7 @@ server = Flask(__name__)
 TOKEN = '5424485104:AAGgOwaEL488DTeH6y3RLwxMEj70ziv6C5U'
 CONNECTION_STRING = "mongodb+srv://hikki_bd:Ares_0377@cluster0.yv7ke.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 client = MongoClient(CONNECTION_STRING)
-db = client['db_for_roz'] # first_DB - название базы данных
+db = client['db_for_roz'] # название базы данных
 collection = db['userDB'] # создаём коллекцию
 bot = telebot.TeleBot(TOKEN)
 
