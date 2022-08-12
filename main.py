@@ -3,7 +3,7 @@ import os
 import random
 from telebot import types
 import telebot
-import pymongo
+import pymongo 
 from pymongo import MongoClient
 
 server = Flask(__name__)
@@ -14,17 +14,23 @@ db = client['db_for_roz'] # название базы данных
 collection = db['userDB'] # создаём коллекцию
 bot = telebot.TeleBot(TOKEN)
 
+print(0)
+
 bot.send_message(1028594384, 'работаю')
 bot.send_message(1895572923, 'работаю')
 
 def getIds(message):
+  print(1)
   return message.chat.id, message.from_user.id
-
+print(2)
 @bot.message_handler(content_types=['text'])
+print(3)
 def commands(message):
     chat, from_user = getIds(message)
+    print(4)
     if message.text == '/start':
         bot.send_message(chat, 'Введи /commands и /rand_num')
+        print(5)
     elif message.text == '/commands':
         bot.send_message(from_user, 'Команды: \n /ready - для участия в розыгрыше \n /stat - кол-во участников')
     elif message.text == '/ready':
