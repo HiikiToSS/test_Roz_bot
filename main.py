@@ -24,13 +24,12 @@ def getIds(message):
   return message.chat.id, message.from_user.id
 print(2)
 @bot.message_handler(content_types=['text'])
-  print(3)
 def commands(message):
     chat, from_user = getIds(message)
-    print(4)
+    print(3)
     if message.text == '/start':
         bot.send_message(chat, 'Введи /commands и /rand_num')
-        print(5)
+        print(4)
     elif message.text == '/commands':
         bot.send_message(from_user, 'Команды: \n /ready - для участия в розыгрыше \n /stat - кол-во участников')
     elif message.text == '/ready':
