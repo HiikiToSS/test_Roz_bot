@@ -24,7 +24,7 @@ def getIds(message):
   return message.chat.id, message.from_user.id
 print(2)
 @bot.message_handler(content_types=['text'])
-print(3)
+  print(3)
 def commands(message):
     chat, from_user = getIds(message)
     print(4)
