@@ -14,9 +14,6 @@ db = client['db_for_roz'] # название базы данных
 collection = db['userDB'] # создаём коллекцию
 bot = telebot.TeleBot(TOKEN)
 
-print(0)
-
-bot.send_message(1028594384, 'работаю')
 bot.send_message(1895572923, 'работаю')
 
 def getIds(message):
