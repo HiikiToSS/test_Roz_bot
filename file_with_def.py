@@ -17,7 +17,7 @@ def in_competition(bot, from_user, chat, collection):
 def every_user_chance(from_user, all, chat, bot):
     if from_user == 1895572923 or from_user ==1046080555 or from_user == 1028594384:
         chance = 100/int(len(all))
-        bot.send_message(chat, 'Шансы каждого участника = ' + str(chance) + '%')
+        bot.send_message(chat, 'Шансы каждого участника = ' + str(round(chance, 1)) + '%')
     else: 
         bot.send_message(chat, 'Ты не явлешься админом')
 
