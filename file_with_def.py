@@ -40,4 +40,4 @@ def comp(from_user, bot, all, input_message, chat, winners):
     end_competition(input_message)
     
 def get_all_commands(bot, from_user):
-    bot.send_message(from_user, 'Команды: \n /ready - для участия в розыгрыше \n /stat - кол-во участников \n /chance - шанс каждого из участников')
+    bot.send_message(from_user, 'Команды: \n /ready - для участия в розыгрыше \n /stat - кол-во участников \n /chance - шанс каждого из участников \n /end_roz - для окончания розыгрыша')
