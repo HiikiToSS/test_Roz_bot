@@ -1,58 +1,41 @@
-from flask import Flask, request
 import os
 import random
 from telebot import types
 import telebot
-import pymongo 
+import pymongo
 from pymongo import MongoClient
+from file_with_def import in_competition,  statistic_about_user, every_user_chance, comp, get_all_commands
 
-server = Flask(__name__)
-TOKEN = '5424485104:AAGgOwaEL488DTeH6y3RLwxMEj70ziv6C5U'
+TOKEN = '5146045260:AAEoPSXOGulJbu3xA4qwGgrDUPFyxxJ0V0I' #AAEoPSXOGulJbu3xA4qwGgrDUPFyxxJ0V0I
 CONNECTION_STRING = "mongodb+srv://hikki_bd:Ares_0377@cluster0.yv7ke.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 client = MongoClient(CONNECTION_STRING)
-db = client['db_for_roz'] # название базы данных
+db = client['db_for_roz'] # first_DB - название базы данных
 collection = db['userDB'] # создаём коллекцию
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(TOKEN)  
 
 bot.send_message(1895572923, 'работаю')
 
 def getIds(message):
-  print(1)
   return message.chat.id, message.from_user.id
-print(2)
+
 @bot.message_handler(content_types=['text'])
 def commands(message):
     chat, from_user = getIds(message)
-    print(3)
+    all = list(collection.find())
+    winners = []
     if message.text == '/start':
-        bot.send_message(chat, 'Введи /commands и /rand_num')
-        print(4)
+        bot.send_message(chat, 'Введи /commands') #сделай блять нормальное приветствие
     elif message.text == '/commands':
-        bot.send_message(from_user, 'Команды: \n /ready - для участия в розыгрыше \n /stat - кол-во участников')
+        get_all_commands(bot, from_user)
     elif message.text == '/ready':
-        user = {'id' : from_user}
-        if collection.find_one(user) is None:
-            bot.send_message(chat, 'Отлично, ты учавствуешь!')
-            collection.insert_one(user)
-        else:
-            bot.send_message(chat, 'Ты уже участник')
+        in_competition(bot, from_user, chat, collection)
     elif message.text == '/stat':
-      all = list(collection.find())
-      bot.send_message(chat, 'Кол-во участников: ' + str(len(all)))
+        statistic_about_user(from_user, bot, chat, all)
+    elif message.text == '/chance':
+        every_user_chance(from_user, all, chat, bot)
+    elif message.text == '/end_roz':
+        comp(from_user, bot, all, message, chat, winners)
     else:
         bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
 
-
-@server.route('/' + TOKEN, methods=['POST'])
-def getMessage():
-    json_string = request.get_data().decode('utf-8')
-    update = telebot.types.Update.de_json(json_string)
-    bot.process_new_updates([update])
-    return "!", 200
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://test-sth01.heroku.com/' + TOKEN)
-    return "!", 200
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+bot.polling(none_stop=True)
