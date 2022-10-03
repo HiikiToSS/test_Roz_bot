@@ -4,6 +4,7 @@ from telebot import types
 import telebot
 import pymongo
 from pymongo import MongoClient
+import Flask
 from file_with_def import in_competition,  statistic_about_user, every_user_chance, comp, get_all_commands
 
 server = Flask(__name__)
