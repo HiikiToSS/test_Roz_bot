@@ -5,7 +5,7 @@ import telebot
 import pymongo
 from pymongo import MongoClient
 from flask import Flask, request
-from file_with_def import in_competition,  statistic_about_user, every_user_chance, comp, get_all_commands
+#from file_with_def import in_competition,  statistic_about_user, every_user_chance, comp, get_all_commands
 
 server = Flask(__name__)
 TOKEN = '5424485104:AAGgOwaEL488DTeH6y3RLwxMEj70ziv6C5U' #AAEoPSXOGulJbu3xA4qwGgrDUPFyxxJ0V0I
@@ -25,20 +25,22 @@ def commands(message):
     chat, from_user = getIds(message)
     all = list(collection.find())
     winners = []
-    if message.text == '/start':
-        bot.send_message(chat, 'Введи /commands') #сделай блять нормальное приветствие
-    elif message.text == '/commands':
-        get_all_commands(bot, from_user)
-    elif message.text == '/ready':
-        in_competition(bot, from_user, chat, collection)
-    elif message.text == '/stat':
-        statistic_about_user(from_user, bot, chat, all)
-    elif message.text == '/chance':
-        every_user_chance(from_user, all, chat, bot)
-    elif message.text == '/end_roz':
-        comp(from_user, bot, all, message, chat, winners)
+    if message.text == '/hi':
+       bot.send_message(chat, 'Введи /commands')
+    #if message.text == '/start':
+     #   bot.send_message(chat, 'Введи /commands') #сделай нормальное приветствие
+   # elif message.text == '/commands':
+       # get_all_commands(bot, from_user)
+   # elif message.text == '/ready':
+       # in_competition(bot, from_user, chat, collection)
+    #elif message.text == '/stat':
+        #statistic_about_user(from_user, bot, chat, all)
+  #  elif message.text == '/chance':
+    #    every_user_chance(from_user, all, chat, bot)
+    #elif message.text == '/end_roz':
+    #    comp(from_user, bot, all, message, chat, winners)
     else:
-        bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
+      bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
