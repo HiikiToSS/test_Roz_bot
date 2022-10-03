@@ -25,20 +25,18 @@ def commands(message):
     chat, from_user = getIds(message)
     all = list(collection.find())
     winners = []
-    if message.text == '/hi':
-       bot.send_message(chat, 'Введи /commands')
-    #if message.text == '/start':
-     #   bot.send_message(chat, 'Введи /commands') #сделай нормальное приветствие
-   # elif message.text == '/commands':
-       # get_all_commands(bot, from_user)
-   # elif message.text == '/ready':
-       # in_competition(bot, from_user, chat, collection)
-    #elif message.text == '/stat':
-        #statistic_about_user(from_user, bot, chat, all)
-  #  elif message.text == '/chance':
-    #    every_user_chance(from_user, all, chat, bot)
-    #elif message.text == '/end_roz':
-    #    comp(from_user, bot, all, message, chat, winners)
+    if message.text == '/start':
+        bot.send_message(chat, 'Введи /commands') #сделай нормальное приветствие
+    elif message.text == '/commands':
+        get_all_commands(bot, from_user)
+    elif message.text == '/ready':
+        in_competition(bot, from_user, chat, collection)
+    elif message.text == '/stat':
+        statistic_about_user(from_user, bot, chat, all)
+    elif message.text == '/chance':
+        every_user_chance(from_user, all, chat, bot)
+    elif message.text == '/end_roz':
+        comp(from_user, bot, all, message, chat, winners)
     else:
       bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
 
