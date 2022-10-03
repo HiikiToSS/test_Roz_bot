@@ -5,7 +5,7 @@ import telebot
 import pymongo
 from pymongo import MongoClient
 from flask import Flask, request
-#from file_with_def import in_competition,  statistic_about_user, every_user_chance, comp, get_all_commands
+from file_with_def import in_competition,  statistic_about_user, every_user_chance, comp, get_all_commands
 
 server = Flask(__name__)
 TOKEN = '5424485104:AAGgOwaEL488DTeH6y3RLwxMEj70ziv6C5U' #AAEoPSXOGulJbu3xA4qwGgrDUPFyxxJ0V0I
