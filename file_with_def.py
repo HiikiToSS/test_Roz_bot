@@ -37,7 +37,7 @@ def comp(from_user, bot, all, input_message, chat, winners):
             
     def get_second_access(message):
         if message.text == 'Более чем' or message.text == 'более чем':
-            winners = random.sample(all, 3)
+            winners = random.sample(all, 2)
             for winner in winners:
                 bot.send_message(winner["id"], 'Поздравляю, ты победил! Напиши @TheOutsider228 для получания награды \n' + str(winner["id"]))
     end_competition(input_message)
