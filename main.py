@@ -18,7 +18,7 @@ bot = telebot.TeleBot(TOKEN)
 bot.send_message(1895572923, 'работаю')
 
 def getIds(message):
-  return message.chat.id, message.from_user.id
+    return message.chat.id, message.from_user.id
 
 @bot.message_handler(content_types=['text'])
 def commands(message):
@@ -26,19 +26,24 @@ def commands(message):
     all = list(collection.find())
     winners = []
     if message.text == '/start':
-        bot.send_message(chat, 'Введи /commands') #сделай нормальное приветствие
+        if from_user == 1895572923 or from_user == 1046080555 or from_user == 1028594384:
+            bot.send_message(chat, 'Введи /commands для просмотра списка доступных команд')
+        else:
+            bot.send_message(chat, 'Введи /ready (Если что то на эту команду можно просто нажать и она сама отправится)')
     elif message.text == '/commands':
         get_all_commands(bot, from_user)
     elif message.text == '/ready':
         in_competition(bot, from_user, chat, collection)
-    elif message.text == '/stat':
+    elif message.text == '/members':
         statistic_about_user(from_user, bot, chat, all)
     elif message.text == '/chance':
         every_user_chance(from_user, all, chat, bot)
     elif message.text == '/end_roz':
         comp(from_user, bot, all, message, chat, winners)
     else:
-      bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
+        bot.send_message(from_user, text = "Я ещё не нейронка чтобы отвечать на любые вопросы, введи /commands чтобы увидеть список команд")
+
+bot.polling(none_stop=True)
 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
