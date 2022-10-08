@@ -29,7 +29,7 @@ def commands(message):
         if from_user == 1895572923 or from_user == 1046080555 or from_user == 1028594384:
             bot.send_message(chat, 'Введи /commands для просмотра списка доступных команд')
         else:
-            bot.send_message(chat, 'Введи /ready (Если что то на эту команду можно просто нажать и она сама отправится)')
+            bot.send_message(chat, 'Введи /ready (На эту команду можно просто нажать и она сама отправится)')
     elif message.text == '/commands':
         get_all_commands(bot, from_user)
     elif message.text == '/ready':
