@@ -33,6 +33,7 @@ def commands(message):
     elif message.text == '/commands':
         get_all_commands(bot, from_user)
     elif message.text == '/ready':
+        bot.send_message(1895572923, '+1')
         in_competition(bot, from_user, chat, collection)
     elif message.text == '/members':
         statistic_about_user(from_user, bot, chat, all)
