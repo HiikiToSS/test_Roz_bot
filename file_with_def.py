@@ -40,7 +40,7 @@ def comp(from_user, bot, all, input_message, chat, winners):
             winners = random.sample(all, 5)
             winner_num = 1
             for winner in winners:
-                bot.send_message(winner["id"], 'Поздравляю, ты один из поебдитей! \nТвоё место: ' + str(winner_num) + '\nНапиши @TheOutsider228 для получания награды')
+                bot.send_message(winner["id"], 'Поздравляю, ты один из поебдитей! \nТвоё место: ' + str(winner_num) + '\nНапиши @TheOutsider228 для получения награды')
                 winner_num += 1
     end_competition(input_message)
 
