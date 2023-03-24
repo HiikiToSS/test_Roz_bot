@@ -9,7 +9,7 @@ def statistic_about_user(from_user, bot, chat, all):
 def in_competition(bot, from_user, chat, collection):
     user = {'id' : from_user}
     if collection.find_one(user) is None:
-        bot.send_message(chat, 'Отлично, ты учавствуешь!\nЖди объявления результатов в @r34world')
+        bot.send_message(chat, 'Отлично, ты учавствуешь!\nЖди объявления результатов в канале)
         collection.insert_one(user)
     else:
         bot.send_message(chat, 'Ты уже участник')
